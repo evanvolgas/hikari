@@ -1,0 +1,26 @@
+services:
+  db:
+    image: timescale/timescaledb:latest-pg16
+    environment:
+      POSTGRES_USER: hikari
+      POSTGRES_PASSWORD: hikari
+      POSTGRES_DB: hikari
+    ports:
+      - "5433:5432"
+    volumes:
+      - hikari_data:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d
+
+  collector:
+    build: ./collector
+    environment:
+      HIKARI_DATABASE_URL: "postgresql+asyncpg://hikari:hikari@db:5432/hikari"
+      HIKARI_HOST: "0.0.0.0"
+      HIKARI_PORT: "8000"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  hikari_data:

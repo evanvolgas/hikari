@@ -1,0 +1,379 @@
+{
+  "metadata": {
+    "epicId": "epic-mkxhlp6v-93UpZX3A9wEv",
+    "sessionId": "session-mkxhlp6v-uwghdyXHRQhQ",
+    "specId": "spec-mkxhqij4-9zSquvyJTc0o",
+    "rounds": 3,
+    "questionsAnswered": 11,
+    "premisesExtracted": 49,
+    "contradictionsDetected": 4,
+    "contradictionsResolved": 4,
+    "averageAnswerQuality": 5.0,
+    "areaCoverage": {
+      "scope": true,
+      "success": true,
+      "constraint": true,
+      "risk": true,
+      "technical": true
+    },
+    "qualityTier": 5,
+    "readinessScore": 70,
+    "generatedAt": "2026-01-28T03:53:51.184Z"
+  },
+  "premises": [
+    {
+      "id": "prem-mkxhnlt2-9oAtfDkp91c8",
+      "statement": "Monkey-patching targets specific method signatures, not class constructors",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhnlt2-y3jpWB99g0-8",
+      "statement": "Version detection happens at import time",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhnlt2-jUTcCGCxqZqz",
+      "statement": "If patch target not found, skip and log warning",
+      "type": "constraint"
+    },
+    {
+      "id": "prem-mkxhnlt2-jnTJG3TAe-R2",
+      "statement": "Minimum supported versions: openai>=1.0, anthropic>=0.18, google-generativeai>=0.3",
+      "type": "constraint"
+    },
+    {
+      "id": "prem-mkxhnlt2-LzPfNwwzYwbV",
+      "statement": "Pricing model is a JSON mapping of (provider/model) to per-token costs",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhnlt3-veQ0UJY1a311",
+      "statement": "Three-tier loading: user dict > env var file > bundled default",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhnlt3-neW5Z-B8wm_j",
+      "statement": "Unknown models get null cost, not zero cost",
+      "type": "constraint"
+    },
+    {
+      "id": "prem-mkxhnlt3-yEfED9ylS1px",
+      "statement": "Runtime update via PricingModel.update() method",
+      "type": "capability"
+    },
+    {
+      "id": "prem-mkxhnlt3-De4MlhXVwfDT",
+      "statement": "Three failure modes: unpatchable provider, unknown model pricing, mixed pipeline",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhnlt3-rLYnPDeBTgPp",
+      "statement": "Pipeline aggregation includes is_partial flag and coverage_ratio",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhnlt3-1QMd7Gc5RVHK",
+      "statement": "Never invent costs -- null means unknown, not zero",
+      "type": "constraint"
+    },
+    {
+      "id": "prem-mkxhnlt3-kE0M6Tjz2C2F",
+      "statement": "Coverage ratio < 1.0 triggers 'at least $X' labeling",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhnlt3-t1uWavneBfPo",
+      "statement": "SDK wrapper overhead < 5ms per API call",
+      "type": "constraint"
+    },
+    {
+      "id": "prem-mkxhnlt3-P-fEF8jIiUK7",
+      "statement": "Async batch flush: 100 spans or 5 seconds",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhnlt4-MmkR0aZJe5U7",
+      "statement": "Collector p99 < 100ms for batch of up to 1000 spans",
+      "type": "constraint"
+    },
+    {
+      "id": "prem-mkxhnlt5-cNCFqCd4UtAG",
+      "statement": "Pipeline lookup by trace_id < 50ms",
+      "type": "constraint"
+    },
+    {
+      "id": "prem-mkxhnlt5-YKD1OC2MnzcJ",
+      "statement": "Trending query < 500ms",
+      "type": "constraint"
+    },
+    {
+      "id": "prem-mkxhnlt5-iUHUU3lPPm7L",
+      "statement": "Steady-state raw storage ~45GB at 1M req/day with 30d retention",
+      "type": "assumption"
+    },
+    {
+      "id": "prem-mkxhnlt5-PqSN1fx4xHQ7",
+      "statement": "Hikari reads token counts from provider API responses, never counts tokens itself",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhnlt5-OTHJpgpQTiaB",
+      "statement": "Each provider has a different response field path for token counts",
+      "type": "assumption"
+    },
+    {
+      "id": "prem-mkxhnlt5-InFYtcDMrh7J",
+      "statement": "Missing token counts from response result in null fields, not estimates",
+      "type": "constraint"
+    },
+    {
+      "id": "prem-mkxhnlt5-jjQAccNgY9WH",
+      "statement": "SDK uses bounded in-memory queue (10,000 max), drops oldest on overflow",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhnlt5-Dm2QC-_Znuib",
+      "statement": "3 retries with exponential backoff (1s, 2s, 4s) on export failure",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhnlt5-7NzbL_Yd1kSm",
+      "statement": "SDK never raises exceptions to user code",
+      "type": "constraint"
+    },
+    {
+      "id": "prem-mkxhnlt5-NksDmoNIkwT8",
+      "statement": "Collector buffers up to 50,000 spans when DB is unavailable",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhnlt6-kE4NJOOTvoTI",
+      "statement": "Collector retries DB writes every 10 seconds",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhnlt6-evBSDdvHXCK_",
+      "statement": "Health endpoint reports degraded when DB unreachable",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhw-8awka8LciG1b",
+      "statement": "pipeline_id defaults to trace_id when not explicitly set",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhw-j1qA1wszDmkd",
+      "statement": "pipeline_id set via hikari.set_pipeline_id() which propagates through OTel context",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhw-0hWCdYq0jpG0",
+      "statement": "stage auto-derives from span name as '{provider}.{operation}'",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhw-BbevAFTCZprw",
+      "statement": "stage overridable via hikari.set_stage()",
+      "type": "capability"
+    },
+    {
+      "id": "prem-mkxhpjhw-NSglG1p3uavC",
+      "statement": "Python uses contextvars, TypeScript uses AsyncLocalStorage for context propagation",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhx-gbkeQW13qqqj",
+      "statement": "Python SDK has 10 source files and 4 test files",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhx-QcgV8M2Y8Zr3",
+      "statement": "TypeScript SDK has 10 source files and 3 test files",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhx-rRq9QNlW2CUc",
+      "statement": "Collector has 8 source files plus tests",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhx-ry4IXK0rVmof",
+      "statement": "2 migration files for schema and continuous aggregates",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhx-AXeLCA-2DyeV",
+      "statement": "docker-compose.yml for local development",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhx-3O9g4bmHDirT",
+      "statement": "5 API endpoints: ingest, pipeline cost, pipeline list, trending, health",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhx-ERjZ6EuXbsMf",
+      "statement": "OTLP-compatible ingestion at POST /v1/traces",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhx-D24FU9RxPL5Q",
+      "statement": "No authentication at v1, self-hosted assumption",
+      "type": "constraint"
+    },
+    {
+      "id": "prem-mkxhpjhx-kACsSEqWdfPq",
+      "statement": "All responses are JSON with structured schemas",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhx-095ACAWNwsmI",
+      "statement": "Three continuous aggregates: hourly, daily, weekly",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhx-d6bBi8J74yEE",
+      "statement": "All aggregates group by pipeline_id, stage, model, provider",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhx-yIJELzc9HTdO",
+      "statement": "Hourly refreshes every 5 min, daily every 1 hour, weekly every 6 hours",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhx-J-eJs-Pn_OAd",
+      "statement": "Raw spans default 30-day retention via HIKARI_RETENTION_DAYS",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhx-ZCMe63fiz8Zx",
+      "statement": "Aggregates retained indefinitely",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhx-TqzDI2fYzjMW",
+      "statement": "Hypertable chunk interval = 1 day",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhx-rN6Ho2BjyKwl",
+      "statement": "Success = all tests pass, types check, migrations run, docker-compose works",
+      "type": "requirement"
+    },
+    {
+      "id": "prem-mkxhpjhx-cZUH_VH5Nr7W",
+      "statement": "Spec must include function signatures, DDL, API shapes, and test patterns",
+      "type": "requirement"
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "contra-mkxhnlt6-0o_6oyGV7552",
+      "description": "Zero-config (one import) vs. needing user to provide pipeline_id and stage attributes",
+      "severity": "medium",
+      "resolved": true,
+      "resolution": "pipeline_id defaults to trace_id, stage auto-derives from span name. Both are zero-config with optional user override."
+    },
+    {
+      "id": "contra-mkxho3j5-dKlN13OV4mN9",
+      "description": "SDK batch size (100) vs. collector capacity (1000 spans per batch)",
+      "severity": "medium",
+      "resolved": true,
+      "resolution": "No conflict. The collector handles UP TO 1000 spans per batch (maximum). SDK sends smaller batches of ~100. Multiple SDK instances can send concurrently. The 1000-span limit is a ceiling, not a requirement."
+    },
+    {
+      "id": "contra-mkxho3j5-HInC_SJO-xV-",
+      "description": "SDK buffer (10,000) vs. collector buffer (50,000) sizing mismatch",
+      "severity": "low",
+      "resolved": true,
+      "resolution": "Different buffer sizes are intentional. SDK buffers per-process (10K is plenty). Collector is a central service receiving from many SDK instances simultaneously, so it needs a larger buffer (50K)."
+    },
+    {
+      "id": "contra-mkxhq6g6-W4BkGJY_6Jf5",
+      "description": "Unknown models get 'null cost' vs. 'null means unknown, not zero' -- apparent redundancy",
+      "severity": "medium",
+      "resolved": true,
+      "resolution": "These are consistent: both say null = unknown. The distinction is that zero is a valid computed cost (e.g., a free tier model), while null means we cannot compute the cost."
+    }
+  ],
+  "qaLog": [
+    {
+      "round": 1,
+      "area": "technical",
+      "question": "Which specific methods/classes in each provider's SDK will be patched, and how will you handle version compatibility?",
+      "answer": "Python SDK patches: openai.resources.chat.completions.Completions.create (v1.x+), anthropic.resources.messages.Messages.create, google.generativeai.GenerativeModel.generate_content. TypeScript: equivalent prototype chain patches. Version detection at import time, skip and warn if incompatible. Min versions: openai>=1.0, anthropic>=0.18, google-generativeai>=0.3.",
+      "score": 5
+    },
+    {
+      "round": 1,
+      "area": "technical",
+      "question": "What exactly is the interface for the pluggable pricing model?",
+      "answer": "JSON mapping of '{provider}/{model}' to per-token costs. Three-tier loading: user dict > HIKARI_PRICING_PATH env var > bundled default. Unknown models get null cost. Runtime update via PricingModel.update().",
+      "score": 5
+    },
+    {
+      "round": 1,
+      "area": "constraint",
+      "question": "What specific failure scenarios trigger graceful degradation?",
+      "answer": "Three scenarios: unpatchable provider, unknown model pricing, mixed pipeline. All report is_partial=true with coverage_ratio. API never invents costs.",
+      "score": 5
+    },
+    {
+      "round": 1,
+      "area": "constraint",
+      "question": "What are the specific performance requirements?",
+      "answer": "SDK <5ms overhead, batch flush 100/5s, collector p99 <100ms, pipeline lookup <50ms, trending <500ms. ~45GB steady-state at 1M req/day with 30d retention.",
+      "score": 5
+    },
+    {
+      "round": 1,
+      "area": "technical",
+      "question": "How will token counting work across providers?",
+      "answer": "Read from provider responses only. OpenAI: usage.prompt_tokens/completion_tokens. Anthropic: usage.input_tokens/output_tokens. Google: usage_metadata.prompt_token_count/candidates_token_count. Never count tokens ourselves.",
+      "score": 5
+    },
+    {
+      "round": 1,
+      "area": "risk",
+      "question": "What error handling when ingestion fails or DB is unavailable?",
+      "answer": "SDK: bounded queue (10K), 3 retries with backoff, never raise to user. Collector: buffer 50K spans, retry DB every 10s, health endpoint reports degraded.",
+      "score": 5
+    },
+    {
+      "round": 2,
+      "area": "technical",
+      "question": "How are pipeline_id and stage determined?",
+      "answer": "pipeline_id defaults to trace_id, overridable via set_pipeline_id(). stage auto-derives from span name as '{provider}.{operation}', overridable via set_stage(). Python uses contextvars, TypeScript uses AsyncLocalStorage.",
+      "score": 5
+    },
+    {
+      "round": 2,
+      "area": "scope",
+      "question": "What constitutes the complete scope of deliverables?",
+      "answer": "Python SDK (10 source + 4 test files), TypeScript SDK (10 source + 3 test files), Collector (8 source + tests), 2 migrations, integration tests, docker-compose.yml.",
+      "score": 5
+    },
+    {
+      "round": 2,
+      "area": "technical",
+      "question": "What are the exact API endpoints?",
+      "answer": "5 endpoints: POST /v1/traces (ingest), GET /v1/pipelines/{id}/cost, GET /v1/pipelines (list), GET /v1/cost/trending, GET /v1/health. All JSON, no auth at v1.",
+      "score": 5
+    },
+    {
+      "round": 2,
+      "area": "technical",
+      "question": "What are the continuous aggregate specs?",
+      "answer": "Three views (hourly/daily/weekly), all group by pipeline_id, stage, model, provider. Hourly refreshes every 5min, daily every 1h, weekly every 6h. Raw spans 30-day retention, aggregates indefinite. Hypertable chunk = 1 day.",
+      "score": 5
+    },
+    {
+      "round": 2,
+      "area": "success",
+      "question": "What validates the spec is precise enough?",
+      "answer": "All tests pass, types check, migrations run on fresh TimescaleDB, docker-compose works, end-to-end roundtrip succeeds. Spec includes function signatures, DDL, API shapes, test patterns.",
+      "score": 5
+    }
+  ]
+}

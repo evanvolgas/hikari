@@ -1,0 +1,62 @@
+{
+  "resourceSpans": [{
+    "scopeSpans": [{
+      "spans": [
+        {
+          "traceId": "pipeline-demo-001",
+          "spanId": "span-extraction",
+          "name": "openai.chat.completions.create",
+          "startTimeUnixNano": "1706400000000000000",
+          "endTimeUnixNano": "1706400001500000000",
+          "attributes": [
+            {"key": "hikari.pipeline_id", "value": "demo-pipeline-001"},
+            {"key": "hikari.stage", "value": "extraction"},
+            {"key": "hikari.model", "value": "gpt-4o"},
+            {"key": "hikari.provider", "value": "openai"},
+            {"key": "hikari.tokens.input", "value": 1523},
+            {"key": "hikari.tokens.output", "value": 412},
+            {"key": "hikari.cost.input", "value": 0.00381},
+            {"key": "hikari.cost.output", "value": 0.00618},
+            {"key": "hikari.cost.total", "value": 0.00999}
+          ]
+        },
+        {
+          "traceId": "pipeline-demo-001",
+          "spanId": "span-summarization",
+          "name": "anthropic.messages.create",
+          "startTimeUnixNano": "1706400002000000000",
+          "endTimeUnixNano": "1706400003200000000",
+          "attributes": [
+            {"key": "hikari.pipeline_id", "value": "demo-pipeline-001"},
+            {"key": "hikari.stage", "value": "summarization"},
+            {"key": "hikari.model", "value": "claude-3-5-sonnet"},
+            {"key": "hikari.provider", "value": "anthropic"},
+            {"key": "hikari.tokens.input", "value": 842},
+            {"key": "hikari.tokens.output", "value": 256},
+            {"key": "hikari.cost.input", "value": 0.00253},
+            {"key": "hikari.cost.output", "value": 0.00384},
+            {"key": "hikari.cost.total", "value": 0.00637}
+          ]
+        },
+        {
+          "traceId": "pipeline-demo-001",
+          "spanId": "span-embedding",
+          "name": "openai.embeddings.create",
+          "startTimeUnixNano": "1706400004000000000",
+          "endTimeUnixNano": "1706400004100000000",
+          "attributes": [
+            {"key": "hikari.pipeline_id", "value": "demo-pipeline-001"},
+            {"key": "hikari.stage", "value": "embedding"},
+            {"key": "hikari.model", "value": "text-embedding-3-small"},
+            {"key": "hikari.provider", "value": "openai"},
+            {"key": "hikari.tokens.input", "value": 256},
+            {"key": "hikari.tokens.output", "value": 0},
+            {"key": "hikari.cost.input", "value": 0.000005},
+            {"key": "hikari.cost.output", "value": 0.0},
+            {"key": "hikari.cost.total", "value": 0.000005}
+          ]
+        }
+      ]
+    }]
+  }]
+}

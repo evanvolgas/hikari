@@ -1,0 +1,30 @@
+[project]
+name = "hikari-sdk"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "opentelemetry-api>=1.20",
+    "opentelemetry-sdk>=1.20",
+    "httpx>=0.25",
+]
+
+[project.optional-dependencies]
+openai = ["openai>=1.0"]
+anthropic = ["anthropic>=0.18"]
+google = ["google-generativeai>=0.3"]
+# LiteLLM provides pricing for 1,700+ models - highly recommended
+litellm = ["litellm>=1.40"]
+all = ["hikari-sdk[openai,anthropic,google,litellm]"]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "mypy>=1.5",
+    "ruff>=0.1",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hikari"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
