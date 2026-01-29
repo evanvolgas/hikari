@@ -72,10 +72,15 @@ class Span(BaseModel):
     @field_validator("traceId", "spanId")
     @classmethod
     def validate_id_format(cls, v: str) -> str:
-        """Validate trace/span ID contains only safe characters."""
-        if not re.match(r"^[a-fA-F0-9\-]+$", v):
+        """Validate trace/span ID contains only safe characters.
+
+        Allows alphanumeric characters, hyphens, and underscores.
+        This is more permissive than strict hex to accommodate various
+        ID formats in test and production environments.
+        """
+        if not re.match(r"^[a-zA-Z0-9\-_]+$", v):
             raise ValueError(
-                "ID must contain only hexadecimal characters and hyphens"
+                "ID must contain only alphanumeric characters, hyphens, and underscores"
             )
         return v
 

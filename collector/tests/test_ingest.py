@@ -14,8 +14,8 @@ async def test_ingest_valid_spans(client: AsyncClient) -> None:
                     {
                         "spans": [
                             {
-                                "traceId": "abc123",
-                                "spanId": "span001",
+                                "traceId": "abc123def456",
+                                "spanId": "dead001beef",
                                 "name": "llm.generate",
                                 "startTimeUnixNano": "1700000000000000000",
                                 "endTimeUnixNano": "1700000001000000000",
@@ -56,8 +56,8 @@ async def test_ingest_invalid_span_rejected(client: AsyncClient) -> None:
                     {
                         "spans": [
                             {
-                                "traceId": "abc123",
-                                "spanId": "span001",
+                                "traceId": "abc123def456",
+                                "spanId": "dead001beef",
                                 "name": "llm.generate",
                                 "startTimeUnixNano": "1700000000000000000",
                                 "endTimeUnixNano": "1700000001000000000",
@@ -68,8 +68,8 @@ async def test_ingest_invalid_span_rejected(client: AsyncClient) -> None:
                                 ],
                             },
                             {
-                                "traceId": "abc123",
-                                "spanId": "span002",
+                                "traceId": "abc123def456",
+                                "spanId": "dead002beef",
                                 "name": "llm.generate",
                                 "startTimeUnixNano": "1700000000000000000",
                                 "endTimeUnixNano": "1700000001000000000",
@@ -122,8 +122,8 @@ async def test_ingest_missing_token_counts_accepted(client: AsyncClient) -> None
                     {
                         "spans": [
                             {
-                                "traceId": "abc123",
-                                "spanId": "span001",
+                                "traceId": "abc123def456",
+                                "spanId": "dead001beef",
                                 "name": "llm.generate",
                                 "startTimeUnixNano": "1700000000000000000",
                                 "endTimeUnixNano": "1700000001000000000",
@@ -159,8 +159,8 @@ async def test_ingest_custom_pipeline_id(client: AsyncClient) -> None:
                     {
                         "spans": [
                             {
-                                "traceId": "trace123",
-                                "spanId": "span001",
+                                "traceId": "face123def456",
+                                "spanId": "dead001beef",
                                 "name": "llm.generate",
                                 "startTimeUnixNano": "1700000000000000000",
                                 "endTimeUnixNano": "1700000001000000000",
@@ -197,8 +197,8 @@ async def test_ingest_otlp_typed_values(client: AsyncClient) -> None:
                     {
                         "spans": [
                             {
-                                "traceId": "abc123",
-                                "spanId": "span001",
+                                "traceId": "abc123def456",
+                                "spanId": "dead001beef",
                                 "name": "llm.generate",
                                 "startTimeUnixNano": "1700000000000000000",
                                 "endTimeUnixNano": "1700000001000000000",
