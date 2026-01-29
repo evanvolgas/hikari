@@ -8,10 +8,10 @@ from __future__ import annotations
 import logging
 import time
 from collections import defaultdict
-from typing import Callable
+from collections.abc import Awaitable, Callable
 
 from fastapi import HTTPException, Request, Response, status
-from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
 
 logger = logging.getLogger(__name__)
 
@@ -178,7 +178,7 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
         )
 
     async def dispatch(
-        self, request: Request, call_next: Callable[[Request], Response]
+        self, request: Request, call_next: RequestResponseEndpoint
     ) -> Response:
         """Process request through rate limiter.
 
