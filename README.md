@@ -1,8 +1,10 @@
 # Hikari
 
-Open-source, OpenTelemetry-based LLM pipeline cost intelligence.
+<p align="center">
+  <img src="hikari.jpg" alt="Hikari - LLM Pipeline Cost Intelligence" width="100%">
+</p>
 
-Named after the Japanese word for "light" (光).
+Open-source, OpenTelemetry-based LLM pipeline cost intelligence.
 
 ## What It Does
 
